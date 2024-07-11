@@ -1,0 +1,347 @@
+#!/usr/bin/env python3
+import time
+import roslib
+import rospy
+import actionlib
+from control_msgs.msg import *
+from trajectory_msgs.msg import *
+
+
+if __name__ == '__main__':
+    
+    rospy.init_node("test_gazebo", disable_signals=True)
+
+    robot_client = actionlib.SimpleActionClient('/kr20/kr20_joint_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
+
+    print("Waiting for server...")
+    robot_client.wait_for_server()
+    print("Connected to server")
+
+    joint_names = ['base__link01', 'link01__link02', 'link02__link03', 'link03__link04', 'link04__link05', 'link05__link06', 'link06__gripper']
+
+    g = FollowJointTrajectoryGoal()
+    g.trajectory = JointTrajectory()
+    g.trajectory.joint_names = joint_names
+
+    # Initial position
+    
+    Q0 = [0.0, 0.0, 0, 0, 0, 0, 0]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(1.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1)
+    
+    Q0 = [0.0, 0.0, 0, -0.3, 0, 0, 0]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(1.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.5)
+    
+    # Horno izquierdo
+    Q0 = [0.0, -1.57, 0.6, -0.3, 0, 0.70, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1)
+     
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.3)
+    
+
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.0, -1.57, 0.3, -0.5, 0, 0.40, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.3)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.0, -1.57, 0.1, -0.3, 0, 0.0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.2)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.2, -1.57, -0.5, 0, 0, -0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.4, -1.57, -0.5, -0.2, 0, -0.5, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)    
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    
+    Q0 = [0.6, -1.57, -0.7, -0.1, 0, -0.7, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)       
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.3)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+# Horno derecho
+    Q0 = [0.0, 1.57, 0.6, -0.3, 0, 0.70, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.3)
+
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.0, 1.57, 0.3, -0.3, 0, 0.40, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.3)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    
+    Q0 = [0.0, 1.57, 0.1, -0.3, 0, 0.0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.2)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.2, 1.57, -0.3, -0.2, 0, -0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    
+    Q0 = [0.4, 1.57, -0.5, -0.2, 0, -0.5, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)    
+    
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)
+    
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8)
+
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    Q0 = [0.6, 1.57, -0.3, 0, 0, -0.7, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)           
+  
+    # dejar en la faja despachadora
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+
+    Q0 = [0.0, 0, 0.3, -0.3, 0, 0.3, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(0.8) 
+    
+    Q0 = [0.0, 0, 0, 0, 0, 0, 1.57]
+    g.trajectory.points = [ JointTrajectoryPoint(positions=Q0, velocities=[0]*7,time_from_start=rospy.Duration(2.0))]
+    robot_client.send_goal(g)
+    robot_client.wait_for_result()
+    rospy.sleep(1.4)   
+    
+    rate = rospy.Rate(10)
